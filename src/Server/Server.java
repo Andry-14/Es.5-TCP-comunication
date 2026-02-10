@@ -1,6 +1,9 @@
 package Server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -53,5 +56,20 @@ public class Server {
         } catch (IOException e) {
 
         }
+    }
+
+    public void leggi(){
+        try {
+            InputStream inputStream = clientSocket.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String testo = br.readLine();
+            System.out.println("CLIENT: "+ testo);
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void scrivi(){
+
     }
 }

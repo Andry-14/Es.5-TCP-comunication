@@ -1,6 +1,8 @@
 package Client;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
@@ -44,5 +46,17 @@ public class Client {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void scrivi(){
+        try {
+            OutputStream outputStream = socket.getOutputStream();
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            printWriter.print("CIAO");
+            printWriter.flush();
+
+        } catch (IOException e) {
+
+        }
     }
 }
