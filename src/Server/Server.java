@@ -1,9 +1,6 @@
 package Server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -70,6 +67,14 @@ public class Server {
     }
 
     public void scrivi(){
+        try {
+            OutputStream outputStream = clientSocket.getOutputStream();
+            PrintWriter printWriter = new PrintWriter(outputStream);
+            printWriter.println("CIAO");
+            printWriter.flush();
 
+        } catch (IOException e) {
+
+        }
     }
 }

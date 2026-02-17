@@ -1,8 +1,6 @@
 package Client;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class Client {
@@ -52,9 +50,29 @@ public class Client {
         try {
             OutputStream outputStream = socket.getOutputStream();
             PrintWriter printWriter = new PrintWriter(outputStream);
-            printWriter.print("CIAO");
+            printWriter.println("CIAO");
             printWriter.flush();
 
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void leggi(){
+        try {
+            InputStream inputStream = socket.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String testo = br.readLine();
+            System.out.println("SERVER: "+ testo);
+        } catch (IOException e) {
+
+        }
+    }
+
+    public void chiudi(){
+        try {
+            socket.close();
+            System.out.println("Il client si è disconesso");
         } catch (IOException e) {
 
         }

@@ -7,5 +7,6 @@ public class MainServer {
      server.attendi();
      server.leggi();
      server.scrivi();
+
     }
 }

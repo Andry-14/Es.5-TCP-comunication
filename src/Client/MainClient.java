@@ -5,5 +5,7 @@ public class MainClient {
        Client client = new Client("Andrea");
        client.connetti("localhost",3000);
        client.scrivi();
+        client.leggi();
+        client.chiudi();
         }
 }
