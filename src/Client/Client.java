@@ -2,6 +2,8 @@ package Client;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
+import java.util.Scanner;
 
 public class Client {
     private String nome;
@@ -49,24 +51,31 @@ public class Client {
     public void scrivi(){
         try {
             OutputStream outputStream = socket.getOutputStream();
-            PrintWriter printWriter = new PrintWriter(outputStream);
-            printWriter.println("CIAO");
-            printWriter.flush();
+            PrintWriter printWriter = new PrintWriter(outputStream, true);
+            Scanner input = new Scanner(System.in);
+            String t2 = input.nextLine();
+            printWriter.println((t2));
+
 
         } catch (IOException e) {
 
         }
     }
 
-    public void leggi(){
+    public String leggi(){
+        String t = "";
         try {
             InputStream inputStream = socket.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-            String testo = br.readLine();
-            System.out.println("SERVER: "+ testo);
-        } catch (IOException e) {
+            t = br.readLine();
+            System.out.println("SERVER: "+ t);
+        } catch (SocketException e){
+            System.err.println("System is closed");
+        }
+        catch (IOException e) {
 
         }
+        return t;
     }
 
     public void chiudi(){

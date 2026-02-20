@@ -3,6 +3,7 @@ package Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -39,42 +40,43 @@ public class Server {
 
     }
 
-    public void chiudi(){
-        try {
-            clientSocket.close();
-        } catch (IOException e) {
-
-        }
-    }
 
     public void termina(){
         try {
+            System.out.println("server disconnesso");
             serverSocket.close();
         } catch (IOException e) {
 
         }
     }
 
-    public void leggi(){
+    public String leggi(){
+        String testo = "";
         try {
             InputStream inputStream = clientSocket.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-            String testo = br.readLine();
+            testo = br.readLine();
             System.out.println("CLIENT: "+ testo);
         } catch (IOException e) {
 
         }
+        return testo;
     }
 
-    public void scrivi(){
+    public String scrivi(){
+        String t= "";
         try {
             OutputStream outputStream = clientSocket.getOutputStream();
-            PrintWriter printWriter = new PrintWriter(outputStream);
-            printWriter.println("CIAO");
-            printWriter.flush();
+            PrintWriter printWriter = new PrintWriter(outputStream, true);
+            Scanner input = new Scanner(System.in);
+            t = input.nextLine();
+            printWriter.println(t);
+
+
 
         } catch (IOException e) {
 
         }
+        return t;
     }
 }

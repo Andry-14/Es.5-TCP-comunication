@@ -4,8 +4,21 @@ public class MainClient {
     public static void main(String[] args) {
        Client client = new Client("Andrea");
        client.connetti("localhost",3000);
-       client.scrivi();
-        client.leggi();
+        String m ="";
+
+        while(true){
+
+            client.scrivi();
+            m = client.leggi();
+
+            if (m.equalsIgnoreCase("FINE")){
+                System.out.println("il client si sta disconnetendo");
+                break;
+            }
+
+        }
         client.chiudi();
+
+
         }
 }
